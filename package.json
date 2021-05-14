@@ -1,0 +1,19 @@
+{
+  "name": "tets-auth-serv",
+  "version": "1.0.0",
+  "description": "test-server with autentification and autorisation from react-films.  nodejs/express/mongodb  ",
+  "main": "sever.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Twonster/films-regisration.git"
+  },
+  "author": "Anton Leybov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Twonster/films-regisration/issues"
+  },
+  "homepage": "https://github.com/Twonster/films-regisration#readme"
+}
