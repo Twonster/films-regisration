@@ -15,13 +15,14 @@ app.use('/api/auth', authRouter)
 
 const start = async () => {
     try {
+
         mongoose.connect(SERVER_DATA.database_url)
-        
-        app.listen(PORT, () => {
-            console.log("server started on:", PORT)
-        })
+        app.listen(PORT, () => console.log("server started on:", PORT))
+
     } catch (error) {
+
         console.log("error:",error)
+        
     }
 }
 
