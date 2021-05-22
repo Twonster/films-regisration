@@ -25,22 +25,30 @@ module.exports = {
             const user = new User({ user_email, user_password, user_id, user_name, user_lastname, user_nickname })
             const DBresponse = await user.save()
             
-            return res.json({ message: `user with ${DBresponse.user_id} id was created`, status: 200 })
+            return res.json({ message: `user with ${DBresponse.user_email} email was created`, status: 200 })
 
         } catch (error) {
             res.send({message: "server error", status: 500, error})
         }
     },
 
-    auth: async (req, res) => {
+    autorisation: async (req, res) => {
         try {
             const { user_email, user_password } = req.body
             const candidate = await User.findOne({ user_email })
-
+            console.log(candidate)
             if (candidate) {
+
+                const userData = { 
+                   user_id: candidate.user_id,
+                   user_email: candidate.user_id,
+                   user_name: candidate.user_id,
+                   user_lastname: candidate.user_id,
+                   favorite_films: candidate.favorite_films
+                }
+
                 if (user_password === candidate.user_password) {
-                    return JWT.sign( {user: user_email}, 'secretkey', (err, token) => res.json({ token, status: 200, message: 'login is completed' }).status(200) )
-                    // return res.status(200).json({ message: 'Sign in is completed' })
+                    return JWT.sign( { user: candidate.user_id }, 'secretkey', (err, token) => res.json({ token, status: 200, message: 'login is completed', userData }).status(200) )
                 } else {
                     return res.status(400).json({ message: 'Password is incorrect, please try again', status: 400 })
                 }
