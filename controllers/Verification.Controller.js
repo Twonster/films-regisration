@@ -20,25 +20,22 @@ module.exports = {
                     favorite_films
                 } = await User.findOne({ user_id: decodedBearer.user })
 
-                return res.status(200).json({
-                    message: 'login is complete',
-                    user: {
-                        user_id, 
-                        user_name, 
-                        user_lastname,
-                        user_nickname,
-                        user_email,
-                        favorite_films
-                    }
-                })
-
+                const user_data = {
+                    user_id, 
+                    user_name, 
+                    user_lastname,
+                    user_nickname,
+                    user_email,
+                    favorite_films
+                }
+            
+                req.user_data = user_data
+                return next()
             } catch (error) {
-                return res.status(401).json({message: 'auth-token-catch error'})
+                return res.status(401).json({message: 'Unauthorised, please log in!'})
             }
         } else {
             return next()
-        }
-        
-        
+        } 
    }
 }
